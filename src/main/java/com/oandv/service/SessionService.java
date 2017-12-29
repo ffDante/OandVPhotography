@@ -1,5 +1,7 @@
 package com.oandv.service;
 
+import com.oandv.model.Session;
+
 import java.util.List;
 
 public interface SessionService {

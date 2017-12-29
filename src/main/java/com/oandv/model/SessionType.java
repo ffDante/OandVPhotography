@@ -13,7 +13,7 @@ public class SessionType {
     private List<Session> sessionsByIdSessionType;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idSessionType")
     public int getIdSessionType() {
         return idSessionType;

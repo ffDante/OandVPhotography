@@ -14,7 +14,7 @@ public class Order {
     private List<Session> sessionsByIdOrder;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idOrder")
     public int getIdOrder() {
         return idOrder;

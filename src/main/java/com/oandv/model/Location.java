@@ -14,7 +14,7 @@ public class Location {
     private List<Session> sessionsByIdLocation;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idLocation")
     public int getIdLocation() {
         return idLocation;

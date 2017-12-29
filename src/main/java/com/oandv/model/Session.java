@@ -7,13 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="session")
-@IdClass(SessionPK.class)
 public class Session {
     private int idSession;
-    private int clientId;
-    private int locationId;
-    private int orderId;
-    private int sessionTypeId;
     private LocalDateTime dateAndTime;
     private String stage;
     private String linkToGallery;
@@ -26,7 +21,7 @@ public class Session {
     private SessionType sessionTypeBySessionTypeId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idSession")
     public int getIdSession() {
         return idSession;
@@ -34,46 +29,6 @@ public class Session {
 
     public void setIdSession(int idSession) {
         this.idSession = idSession;
-    }
-
-    @Id
-    @Column(name = "ClientId")
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    @Id
-    @Column(name = "LocationId")
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    @Id
-    @Column(name = "OrderId")
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    @Id
-    @Column(name = "SessionTypeId")
-    public int getSessionTypeId() {
-        return sessionTypeId;
-    }
-
-    public void setSessionTypeId(int sessionTypeId) {
-        this.sessionTypeId = sessionTypeId;
     }
 
     @Basic
@@ -146,10 +101,6 @@ public class Session {
         Session session = (Session) o;
 
         if (idSession != session.idSession) return false;
-        if (clientId != session.clientId) return false;
-        if (locationId != session.locationId) return false;
-        if (orderId != session.orderId) return false;
-        if (sessionTypeId != session.sessionTypeId) return false;
         if (dateAndTime != null ? !dateAndTime.equals(session.dateAndTime) : session.dateAndTime != null) return false;
         if (stage != null ? !stage.equals(session.stage) : session.stage != null) return false;
         if (linkToGallery != null ? !linkToGallery.equals(session.linkToGallery) : session.linkToGallery != null)
@@ -164,10 +115,6 @@ public class Session {
     @Override
     public int hashCode() {
         int result = idSession;
-        result = 31 * result + clientId;
-        result = 31 * result + locationId;
-        result = 31 * result + orderId;
-        result = 31 * result + sessionTypeId;
         result = 31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
         result = 31 * result + (stage != null ? stage.hashCode() : 0);
         result = 31 * result + (linkToGallery != null ? linkToGallery.hashCode() : 0);
