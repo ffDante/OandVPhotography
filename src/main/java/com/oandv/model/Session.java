@@ -1,7 +1,9 @@
 package com.oandv.model;
 
 import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
 
 import javax.persistence.*;
 
@@ -9,15 +11,19 @@ import javax.persistence.*;
 @Table(name="session")
 public class Session {
     private int idSession;
-    private LocalDateTime dateAndTime;
+    private LocalDate date;
+    private LocalTime time;
+
+    //PLANNED, BOOKED, CAPTURED, RETOUCHED1, PENDING_CONFIRMATION, RETOUCHED2, DONE
     private String stage;
+
     private String linkToGallery;
     private String notes;
     private String createdBy;
     private LocalDateTime createdAt;
     private Client clientByClientId;
     private Location locationByLocationId;
-    private Order orderByOrderId;
+    private SessionOrder orderBySessionOrderId;
     private SessionType sessionTypeBySessionTypeId;
 
     @Id
@@ -32,14 +38,25 @@ public class Session {
     }
 
     @Basic
-    @Column(name = "DateAndTime")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-    public LocalDateTime getDateAndTime() {
-        return dateAndTime;
+    @Column(name = "Date")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
-        this.dateAndTime = dateAndTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Basic
+    @Column(name = "Time")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     @Basic
@@ -101,7 +118,8 @@ public class Session {
         Session session = (Session) o;
 
         if (idSession != session.idSession) return false;
-        if (dateAndTime != null ? !dateAndTime.equals(session.dateAndTime) : session.dateAndTime != null) return false;
+        if (date != null ? !date.equals(session.date) : session.date != null) return false;
+        if (time != null ? !time.equals(session.time) : session.time != null) return false;
         if (stage != null ? !stage.equals(session.stage) : session.stage != null) return false;
         if (linkToGallery != null ? !linkToGallery.equals(session.linkToGallery) : session.linkToGallery != null)
             return false;
@@ -115,7 +133,8 @@ public class Session {
     @Override
     public int hashCode() {
         int result = idSession;
-        result = 31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (stage != null ? stage.hashCode() : 0);
         result = 31 * result + (linkToGallery != null ? linkToGallery.hashCode() : 0);
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
@@ -146,12 +165,12 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "OrderId", referencedColumnName = "idOrder", nullable = false)
-    public Order getOrderByOrderId() {
-        return orderByOrderId;
+    public SessionOrder getOrderBySessionOrderId() {
+        return orderBySessionOrderId;
     }
 
-    public void setOrderByOrderId(Order orderByOrderId) {
-        this.orderByOrderId = orderByOrderId;
+    public void setOrderBySessionOrderId(SessionOrder orderBySessionOrderId) {
+        this.orderBySessionOrderId = orderBySessionOrderId;
     }
 
     @ManyToOne

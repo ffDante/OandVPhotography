@@ -24,6 +24,14 @@ public class SessionDAOImpl extends AbstractDAO implements SessionDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
+    public List<Session> findAllSessionsForUser(String user) {
+        Criteria criteria = getSession().createCriteria(Session.class);
+        criteria.add(Restrictions.eq("createdBy", user));
+        return (List<Session>) criteria.list();
+    }
+
+    @Override
     public void deleteSessionById(int id) {
         Query query = getSession().createSQLQuery("delete from session where idSession = :id");
         query.setInteger("id", id);

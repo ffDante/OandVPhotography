@@ -8,12 +8,14 @@ public interface SessionService {
 
     void saveEmployee(Session session);
 
-    List<Session> findAllEmployees();
+    List<Session> findAllSessions();
 
-    void deleteEmployeeById(int id);
+    List<Session> findAllSessionsForUser(String user);
+
+    void deleteSessionById(int id);
 
     Session findById(int id);
 
-    void updateEmployee(Session session);
+    void updateSession(Session session);
 
 }

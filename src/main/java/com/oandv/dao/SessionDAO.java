@@ -10,6 +10,8 @@ public interface SessionDAO {
 
     List<Session> findAllSessions();
 
+    List<Session> findAllSessionsForUser(String user);
+
     void deleteSessionById(int id);
 
     Session findById(int id);

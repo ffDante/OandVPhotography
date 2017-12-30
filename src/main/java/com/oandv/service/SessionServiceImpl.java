@@ -21,12 +21,17 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public List<Session> findAllEmployees() {
+    public List<Session> findAllSessions() {
         return sessionDAO.findAllSessions();
     }
 
     @Override
-    public void deleteEmployeeById(int id) {
+    public List<Session> findAllSessionsForUser(String user) {
+        return sessionDAO.findAllSessionsForUser(user);
+    }
+
+    @Override
+    public void deleteSessionById(int id) {
         sessionDAO.deleteSessionById(id);
     }
 
@@ -36,7 +41,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void updateEmployee(Session session) {
+    public void updateSession(Session session) {
         sessionDAO.updateSession(session);
     }
 

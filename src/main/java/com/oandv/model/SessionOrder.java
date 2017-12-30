@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="order")
-public class Order {
+@Table(name="sessionorder")
+public class SessionOrder {
     private int idOrder;
     private Integer amountDue;
     private Integer amountPaid;
@@ -69,14 +69,14 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Order order = (Order) o;
+        SessionOrder sessionOrder = (SessionOrder) o;
 
-        if (idOrder != order.idOrder) return false;
-        if (amountDue != null ? !amountDue.equals(order.amountDue) : order.amountDue != null) return false;
-        if (amountPaid != null ? !amountPaid.equals(order.amountPaid) : order.amountPaid != null) return false;
-        if (durationOfSession != null ? !durationOfSession.equals(order.durationOfSession) : order.durationOfSession != null)
+        if (idOrder != sessionOrder.idOrder) return false;
+        if (amountDue != null ? !amountDue.equals(sessionOrder.amountDue) : sessionOrder.amountDue != null) return false;
+        if (amountPaid != null ? !amountPaid.equals(sessionOrder.amountPaid) : sessionOrder.amountPaid != null) return false;
+        if (durationOfSession != null ? !durationOfSession.equals(sessionOrder.durationOfSession) : sessionOrder.durationOfSession != null)
             return false;
-        if (amountOfPhotos != null ? !amountOfPhotos.equals(order.amountOfPhotos) : order.amountOfPhotos != null)
+        if (amountOfPhotos != null ? !amountOfPhotos.equals(sessionOrder.amountOfPhotos) : sessionOrder.amountOfPhotos != null)
             return false;
 
         return true;
@@ -92,7 +92,7 @@ public class Order {
         return result;
     }
 
-    @OneToMany(mappedBy = "orderByOrderId")
+    @OneToMany(mappedBy = "orderBySessionOrderId")
     public List<Session> getSessionsByIdOrder() {
         return sessionsByIdOrder;
     }
