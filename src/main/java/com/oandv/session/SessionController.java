@@ -1,5 +1,7 @@
 package com.oandv.session;
 
+import com.oandv.model.Session;
+import com.oandv.service.SecurityService;
 import com.oandv.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,23 +15,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SessionController {
 
     @Autowired
-    SessionService service;
+    SessionService sessionService;
+    @Autowired
+    SecurityService securityService;
+
 
     @RequestMapping(value = "/list-sessions", method = RequestMethod.GET)
     public String showListOfSessions(ModelMap model) {
-        String user = getLoggedInUserName();
-        model.addAttribute("sessions", service.findAllSessionsForUser(user));
+        String user = securityService.getLoggedInUserName();
+        model.addAttribute("sessions", sessionService.findAllSessionsForUser(user));
         return "list-sessions";
     }
 
-    private String getLoggedInUserName() {
-        Object principal = SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails)
-            return ((UserDetails) principal).getUsername();
-
-        return principal.toString();
+    @RequestMapping(value = "/add-session", method = RequestMethod.GET)
+    public String showAddSessionPage(ModelMap model) {
+        model.addAttribute("session", new Session());
+        return "session";
     }
 
 }

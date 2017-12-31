@@ -19,4 +19,5 @@ public class ExceptionController {
         logger.error("Request: " + req.getRequestURL() + " raised " + exception);
         return "error";
     }
+
 }

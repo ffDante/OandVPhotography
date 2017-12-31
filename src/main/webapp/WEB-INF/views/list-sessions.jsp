@@ -21,7 +21,7 @@
                 <td>${session.stage}</td>
                 <td>${session.notes}</td>
                 <td><a type="button" class="btn btn-primary" href="/update-session?id=${session.idSession}">Edit</a> <a
-                        type="button" class="btn btn-warning" href="/delete-session?id=${session.idSession}">Delete</a>
+                        type="button" class="btn btn-danger" href="/delete-session?id=${session.idSession}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
